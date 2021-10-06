@@ -233,3 +233,17 @@ form.addEventListener("input", () => {
 const today = new Date();
 const year = document.getElementById("year");
 year.innerHTML = today.getFullYear();
+
+// 6. Scroll container hidden when at banner
+const scrollContainer = document.querySelector(".scroll-container");
+const mainHeader = document.getElementById("main-header");
+
+window.addEventListener("scroll", () => {
+  if (window.pageYOffset >= mainHeader.offsetTop + 300) {
+    scrollContainer.classList.remove("hidden");
+  } else {
+    scrollContainer.classList.add("hidden");
+  }
+});
+
+console.log(scrollContainer);
