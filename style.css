@@ -722,7 +722,7 @@ textarea.active {
 
 @media (max-width: 450px) and (orientation: portrait) {
   .mobile {
-    height: 80vh;
+    height: 60vh;
     padding-top: 20%;
   }
 
