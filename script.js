@@ -208,7 +208,7 @@ function getFieldName(input) {
 
 // Event listener
 form.addEventListener("submit", function (e) {
-  e.preventDefault();
+  // e.preventDefault();
 
   checkRequired([fullName, email, message]);
   checkLength(fullName, 3, 15);
