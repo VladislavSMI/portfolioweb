@@ -325,6 +325,53 @@ input:-webkit-autofill {
   transition: width 1s 0.5s ease-in-out;
 }
 
+.skill {
+  position: relative;
+}
+
+.skill-title,
+.skill-text {
+  display: none;
+}
+
+.skill.active .skill-title,
+.skill.active .skill-text {
+  display: block;
+}
+
+.skill-toggle {
+  background-color: transparent;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  padding: 0;
+  position: absolute;
+  top: 20px;
+  right: -30px;
+  height: 30px;
+  width: 30px;
+}
+
+.skill-toggle:focus {
+  outline: 0;
+}
+
+.skill-toggle .fa-times {
+  display: none;
+}
+
+.skill.active .skill-toggle .fa-times {
+  display: block;
+}
+
+.skill.active .skill-toggle .fa-chevron-down {
+  display: none;
+}
+
 /* Section C: My Projects */
 
 .project-wrapper {
@@ -419,6 +466,10 @@ input:-webkit-autofill {
   position: absolute;
   width: 100%;
   bottom: 5%;
+}
+
+.project-link {
+  width: 40%;
 }
 
 /* Section D: Contact Form */

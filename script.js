@@ -74,9 +74,9 @@ function run() {
   photos.forEach((photo) => photo.classList.toggle("hidden-photo"));
 }
 
-// 3. Technical skills section JS
+// 3. Technical skills section + navbar links JS
 const progressSection = document.getElementById("section-b");
-const progressBarsPercents = [95, 85, 70, 75, 65];
+const progressBarsPercents = [90, 85, 70, 75, 65];
 const progressBars = document.querySelectorAll(".progress-percent");
 const sections = document.querySelectorAll("section");
 const navbarLinks = document.querySelectorAll(".navbar-link");
@@ -116,6 +116,16 @@ function updateNavBarLinks() {
 
 updateTechnicalSkills();
 updateNavBarLinks();
+
+// FAQ Skills and certificates => the whole skills div is clicable
+const skills = document.querySelectorAll(".skill");
+
+skills.forEach((skill) => {
+  skill.addEventListener("click", () => {
+    skill.classList.toggle("active");
+  });
+});
+
 
 // 4. Contact form section JS
 // Form control => label animation + email verification
