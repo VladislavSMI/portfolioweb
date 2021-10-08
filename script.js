@@ -201,11 +201,11 @@ function getFieldName(input) {
 form.addEventListener("submit", function (e) {
   checkEmail(email);
   checkLength(fullName, 3, 15);
-  checkLength(message, 6, 250);
+  checkLength(message, 6, 1800);
 
   if (
     checkLength(fullName, 3, 15) &&
-    checkLength(message, 6, 250) &&
+    checkLength(message, 6, 1800) &&
     checkEmail(email)
   ) {
     console.log("form correct");
