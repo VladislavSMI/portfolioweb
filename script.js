@@ -126,7 +126,6 @@ skills.forEach((skill) => {
   });
 });
 
-
 // 4. Contact form section JS
 // Form control => label animation + email verification
 const labels = document.querySelectorAll(".form-control label");
@@ -168,6 +167,7 @@ function checkEmail(input) {
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   if (re.test(input.value.trim())) {
     showSuccess(input);
+    return true;
   } else {
     showError(input, `Email is not valid`);
   }
@@ -180,6 +180,7 @@ function checkRequired(inputArr) {
       showError(input, `${getFieldName(input)} is required`);
     } else {
       showSuccess(input);
+      return true;
     }
   });
 }
@@ -198,6 +199,7 @@ function checkLength(input, min, max) {
     );
   } else {
     showSuccess(input);
+    return true;
   }
 }
 
@@ -207,13 +209,20 @@ function getFieldName(input) {
 }
 
 // Event listener
-form.addEventListener("submit", function (e) {
-  // e.preventDefault();
 
-  checkRequired([fullName, email, message]);
-  checkLength(fullName, 3, 15);
-  checkLength(message, 6, 25);
-  checkEmail(email);
+form.addEventListener("submit", function (e) {
+   checkRequired([fullName, email, message]);
+
+  if (
+    checkLength(fullName, 3, 15) &&
+    checkLength(message, 6, 25) &&
+    checkEmail(email)
+  ) {
+    console.log("form correct");
+  } else {
+    e.preventDefault();
+    console.log("form incorrect");
+  }
 });
 
 // Adding active clase in case name and email fields are not empty
@@ -255,5 +264,3 @@ window.addEventListener("scroll", () => {
     scrollContainer.classList.add("hidden");
   }
 });
-
-console.log(scrollContainer);
