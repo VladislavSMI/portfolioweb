@@ -173,18 +173,6 @@ function checkEmail(input) {
   }
 }
 
-// Check required fields
-function checkRequired(inputArr) {
-  inputArr.forEach(function (input) {
-    if (input.value.trim() === "") {
-      showError(input, `${getFieldName(input)} is required`);
-    } else {
-      showSuccess(input);
-      return true;
-    }
-  });
-}
-
 // Check input length
 function checkLength(input, min, max) {
   if (input.value.length < min) {
@@ -211,7 +199,9 @@ function getFieldName(input) {
 // Event listener
 
 form.addEventListener("submit", function (e) {
-   checkRequired([fullName, email, message]);
+  checkEmail(email);
+  checkLength(fullName, 3, 15);
+  checkLength(message, 6, 25);
 
   if (
     checkLength(fullName, 3, 15) &&
