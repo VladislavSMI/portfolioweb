@@ -1,19 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.css"
+    />
     <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-1YDE7149EE"
+      src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.js"
+      data-cfasync="false"
     ></script>
     <script>
+      var popup;
+      window.addEventListener("load", function () {
+        window.cookieconsent.initialise({
+          type: "opt-in",
+          theme: "classic",
+          palette: {
+            popup: {
+              background: "#000",
+              text: "#fff",
+            },
+            button: {
+              background: "#f5f432",
+              text: "#000",
+            },
+          },
+
+          content: {
+            deny: "Deny",
+            allow: "Allow",
+          },
+          onInitialise: function (status) {
+            if (status == cookieconsent.status.allow) setCookies();
+          },
+          onStatusChange: function (status) {
+            if (this.hasConsented()) setCookies();
+            else deleteCookies(this.options.cookie.name);
+          },
+
+          function(p) {
+            popup = p;
+          },
+        });
+      });
+
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
       }
-      gtag("js", new Date());
 
+      gtag("js", new Date());
       gtag("config", "G-1YDE7149EE");
+
+      function setCookies() {
+        var s = document.createElement("script");
+        s.type = "text/javascript";
+        s.async = "true";
+        s.src = "https://www.googletagmanager.com/gtag/js?id=G-1YDE7149EE";
+        var x = document.getElementsByTagName("script")[0];
+        x.parentNode.insertBefore(s, x);
+      }
+
+      function deleteCookies(cookieconsent_name) {
+        var keep = [cookieconsent_name];
+
+        document.cookie.split(";").forEach(function (c) {
+          c = c.split("=")[0].trim();
+          if (!~keep.indexOf(c))
+            document.cookie =
+              c + "=;" + "expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
+        });
+      }
     </script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
