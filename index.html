@@ -31,6 +31,15 @@
             deny: "Deny",
             allow: "Allow",
           },
+          revokable: false,
+          law: {
+            regionalLaw: false,
+          },
+
+          animateRevokable: false,
+
+          revokeBtn: "<div class=”cc-revoke ”></div>",
+
           onInitialise: function (status) {
             if (status == cookieconsent.status.allow) setCookies();
           },
