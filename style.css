@@ -91,8 +91,27 @@ input:-webkit-autofill {
   align-items: center;
 }
 
+.flex-center-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .hidden {
   display: none;
+}
+
+.mxw800 {
+  max-width: 800px;
+}
+
+.mxw400 {
+  max-width: 400px;
+}
+
+.m0 {
+  margin: 0;
 }
 
 /* Text Styles*/
@@ -651,6 +670,18 @@ textarea.active {
 
 .scroll-up-btn:hover i {
   color: var(--dark-color);
+}
+
+/* Plugin subpage */
+.plugin-list {
+  margin-top: 1rem;
+  list-style-type: disc;
+  list-style-position: inside;
+  text-align: center;
+}
+
+.plugin-list li {
+  padding-left: 1rem;
 }
 
 /* Mobile Styles */

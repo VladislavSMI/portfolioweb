@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.js"
+      data-cfasync="false"
+    ></script>
+    <script>
+      var popup;
+      window.addEventListener("load", function () {
+        window.cookieconsent.initialise({
+          type: "opt-in",
+          theme: "classic",
+          palette: {
+            popup: {
+              background: "#000",
+              text: "#fff",
+            },
+            button: {
+              background: "#f5f432",
+              text: "#000",
+            },
+          },
+
+          content: {
+            deny: "Deny",
+            allow: "Allow",
+          },
+
+          revokeBtn: "<div class=”cc-revoke ”></div>",
+
+          onInitialise: function (status) {
+            if (status == cookieconsent.status.allow) setCookies();
+          },
+          onStatusChange: function (status) {
+            if (this.hasConsented()) setCookies();
+            else deleteCookies(this.options.cookie.name);
+          },
+
+          function(p) {
+            popup = p;
+          },
+        });
+      });
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      gtag("js", new Date());
+      gtag("config", "G-1YDE7149EE");
+
+      function setCookies() {
+        var s = document.createElement("script");
+        s.type = "text/javascript";
+        s.async = "true";
+        s.src = "https://www.googletagmanager.com/gtag/js?id=G-1YDE7149EE";
+        var x = document.getElementsByTagName("script")[0];
+        x.parentNode.insertBefore(s, x);
+      }
+
+      function deleteCookies(cookieconsent_name) {
+        var keep = [cookieconsent_name];
+
+        document.cookie.split(";").forEach(function (c) {
+          c = c.split("=")[0].trim();
+          if (!~keep.indexOf(c))
+            document.cookie =
+              c + "=;" + "expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
+        });
+      }
+    </script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/ebe1bdd444.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./img/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./img/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./img/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./img/favicon/site.webmanifest" />
+    <meta
+      name="description"
+      content="Front-end web developer with strong product management background specializing in HTML, CSS, JS and React framework."
+    />
+    <meta
+      name="keywords"
+      content="Front-end web developer, HTML, CSS, JavaScript, JS, React"
+    />
+    <title>Vladislav Smihula | Web Developer</title>
+  </head>
+  <body>
+    <!-- Header -->
+    <header id="main-header" class="container text-center">
+      <nav class="navbar">
+        <a href="./index.html#home-header">
+          <h1 class="large text-yellow">
+            <i class="fas fa-laptop-code"></i> VS
+          </h1>
+        </a>
+        <ul>
+          <a href="./index.html#section-a" class="navbar-link">About</a>
+          <a href="./index.html#section-b" class="navbar-link">Skills</a>
+          <a href="./index.html#section-c" class="navbar-link">Projects</a>
+          <a href="./index.html#section-d" class="navbar-link">Contact</a>
+        </ul>
+      </nav>
+    </header>
+    <!-- End of Header -->
+
+    <div class="container text-center flex-center-column">
+      <h1 class="x-large">Jira plugin</h1>
+      <div class="lead">
+        <p>
+          Plugin allows to use Azure DevOps repos with Jira tickets.
+          <br />Features include:
+        </p>
+        <ul class="plugin-list">
+          <li>Displaying related code artifacts directly from Jira issue</li>
+          <li>
+            Setting up custom mapping between Jira projects and DevOps projects
+          </li>
+          <li>Using smart commits</li>
+        </ul>
+      </div>
+      <h2 class="large">General Overview</h2>
+      <p class="lead">
+        Plugin is running as Azure App Service. It is installed via Jira as Jira
+        Connect App. Plugin provides functionality to save mapping of DevOps
+        user to Jira user and then to map each DevOps project to Jira project.
+        To do that plugin requires Jira site admins to log into their DevOps
+        account and authorize access to REST APIs with OAuth 2.0. After site
+        admin logs in, plugin saves mapping to currently logged in Jira user.
+        Then plugin uses his account to get all accessible projects and display
+        project mapping in config page. Also site admins refresh token is saved
+        into DB so other Jira users from same Jira organization can receive
+        access token and make calls to Azure DevOps REST API without per user
+        authentication. Once project mappings are set users can see their code
+        artifacts in Jira tickets. At the same time when project mappings are
+        saved also webhooks are created in Azure DevOps projects. Whenever push
+        is made in DevOps repo which has valid mapping to Jira project smart
+        commit parser is called and Jira REST api is used to add worklogs,
+        comments or to notify Jira user. Plugin is divided into 2 fully
+        independent parts: Smart Commits and Repository Information part.
+      </p>
+      <h2 class="large">Technical solutions</h2>
+      <ul class="lead">
+        <li>Jira REST API</li>
+        <li>Jira JavaScript API</li>
+        <li>Jira Atlassian-connect-express</li>
+        <li>Jira Atlassian design system</li>
+        <li>Azure DevOps Services REST API</li>
+        <li>React</li>
+        <li>TypeScript</li>
+        <li>Mobx</li>
+        <li>NodeJS</li>
+      </ul>
+      <h2 class="large">Design / User Journey</h2>
+      <div class="mxw800">
+        <img src="./img/plugin/plugin_1.jpg" alt="" />
+        <img src="./img/plugin/plugin_2.jpg" alt="" />
+        <img src="./img/plugin/plugin_3.jpg" alt="" />
+        <img src="./img/plugin/plugin_4.jpg" alt="" />
+        <img src="./img/plugin/plugin_5.jpg" alt="" />
+        <img src="./img/plugin/plugin_6.jpg" alt="" />
+        <img class="mxw400" src="./img/plugin/plugin_7.jpg" alt="" />
+        <img src="./img/plugin/plugin_8.jpg" alt="" />
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="main-footer" class="container">
+      <div class="footer-content">
+        <div class="footer-logo flex-center">
+          <a href="#home-header">
+            <h1 class="lead text-yellow">
+              <i class="fas fa-laptop-code"></i> VS
+            </h1>
+          </a>
+          <p class="lead">
+            Copyright &copy; <span id="year"></span>. All Rights Reserved
+          </p>
+        </div>
+        <div class="social flex-center">
+          <a href="mailto:vladislav.smihula@gmail.com" target="_blank"
+            ><i class="fas fa-envelope"></i
+          ></a>
+          <a href="https://twitter.com/smihula_" target="_blank"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/vladislav-%C5%A1mihula-9302b840"
+            target="_blank"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+          <a href="https://github.com/VladislavSMI" target="_blank"
+            ><i class="fab fa-github"></i
+          ></a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="scroll-container">
+      <a href="#main-header" class="scroll-up-btn">
+        <i class="fas fa-arrow-up"></i>
+      </a>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

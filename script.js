@@ -76,7 +76,7 @@ function run() {
 
 // 3. Technical skills section + navbar links JS
 const progressSection = document.getElementById("section-b");
-const progressBarsPercents = [90, 85, 70, 75, 65];
+const progressBarsPercents = [90, 85, 70, 75, 70, 50, 50];
 const progressBars = document.querySelectorAll(".progress-percent");
 const sections = document.querySelectorAll("section");
 const navbarLinks = document.querySelectorAll(".navbar-link");
