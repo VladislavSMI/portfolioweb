@@ -730,14 +730,17 @@ textarea.active {
   /* Text Styles */
   .x-large {
     font-size: 3rem;
+    margin: 2rem 0;
   }
 
   .large {
     font-size: 2rem;
+    margin: 1.5rem 0;
   }
 
   .lead {
     font-size: 1rem;
+    margin: 1.5rem 0;
   }
 
   /* Navbar */
@@ -786,14 +789,17 @@ textarea.active {
   /* Text Styles */
   .x-large {
     font-size: 2.5rem;
+    margin: 1.5rem;
   }
 
   .large {
     font-size: 1.5rem;
+    margin: 1rem;
   }
 
   .lead {
     font-size: 0.9rem;
+    margin: 0.5rem;
   }
 
   .navbar a {
@@ -830,6 +836,11 @@ textarea.active {
   .logos {
     margin: 5rem 0 0;
   }
+
+  .navbar .navbar-link {
+    font-size: 1.14rem;
+    margin: 0rem;
+  }
 }
 
 @media (max-width: 400px) {
@@ -847,5 +858,12 @@ textarea.active {
 
   .container {
     padding: 0 1rem;
+  }
+}
+
+@media (max-width: 365px) {
+  .navbar .navbar-link {
+    font-size: 0.9rem;
+    margin: 0rem;
   }
 }
